@@ -1,0 +1,7 @@
+streamlit
+requests
+matplotlib
+validators
+beautifulsoup4
+openai
+reportlab
