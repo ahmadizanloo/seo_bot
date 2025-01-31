@@ -36,7 +36,7 @@ def plot_donut(score, title):
     ax.pie(sizes, labels=labels, colors=colors, startangle=90, wedgeprops={'width': 0.3, 'edgecolor': 'white'})
     ax.set(aspect="equal")
     plt.title(title)
-    return fig
+    plt.savefig(f"{title.lower()}.png")
 
 SYSTEM_PROMPT = """
 Du bist ein Spezialist für SEO-Optimierung. Erstelle einen umfassenden Bericht auf Grundlage dieser Website-Daten. Bei Bedarf kannst du weitere Informationen hinzufügen.
