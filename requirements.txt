@@ -5,3 +5,4 @@ validators
 beautifulsoup4
 openai
 reportlab
+lxml
