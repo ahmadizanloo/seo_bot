@@ -328,14 +328,7 @@ if url and validators.url(url):
 
     # Generate PDF report
     pdf_buffer = io.BytesIO()
-    image_url = "https://raw.githubusercontent.com/ahmadizanloo/seo_bot/main/adojo.jpg"
-    response_image = requests.get(image_url)
-    if response.status_code == 200:
-        image = ImageReader(response_image.raw)  # Convert image for ReportLab
-    else:
-        raise Exception("Failed to load image from GitHub. Check the URL or permissions.")
-
-    create_seo_report_cover(pdf_buffer, image, "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
+    create_seo_report_cover(pdf_buffer, "https://github.com/ahmadizanloo/seo_bot/blob/main/adojo.jpg", "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
     pdf_buffer.seek(0)
 
     # Offer PDF download
