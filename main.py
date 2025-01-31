@@ -328,7 +328,7 @@ if url and validators.url(url):
 
     # Generate PDF report
     pdf_buffer = io.BytesIO()
-    create_seo_report_cover(pdf_buffer, "https://github.com/ahmadizanloo/seo_bot/blob/main/adojo.jpg", "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
+    create_seo_report_cover(pdf_buffer, "adojo.jpg", "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
     pdf_buffer.seek(0)
 
     # Offer PDF download
