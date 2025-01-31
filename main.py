@@ -69,6 +69,7 @@ def create_seo_report_cover(pdf_buffer, report_title, website_url):
         # Add company tagline below the logo
         tagline_y_position = height - 180  # Spacing below the logo
         c.setFont("Helvetica", 14)
+        c.drawCentredString(width / 2, tagline_y_position+30, "adojo GmbH")
         c.drawCentredString(width / 2, tagline_y_position, "Ihre Online-Marketing Agentur aus Nürnberg")
 
     # Add Title (Wrapped)
