@@ -12,6 +12,7 @@ from reportlab.lib.colors import HexColor
 from textwrap import wrap
 import io
 import base64
+import os
 
 # Import all the functions from your original script
 
@@ -42,7 +43,7 @@ Du bist ein Spezialist für SEO-Optimierung. Erstelle einen umfassenden Bericht 
 Verwende den Nummerierungsstil. Füge zwischen den Zeilen einen doppelten Zeilenabstand ein. Für eine neue Zeile verwende \n.
 """
 
-GOOGLE_API_KEY = "AIzaSyCed3Z3MJPWxRM-gajQMiRhXz07vl0wbSE"
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 def draw_wrapped_text(c, text, max_width, x, y, font="Helvetica", font_size=14, line_spacing=16):
     """
@@ -307,7 +308,7 @@ if url and validators.url(url):
     }
 
     # Get AI recommendations
-    api_key="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"
+    api_key = os.getenv("OPENAI_API_KEY")
     openai_client = OpenAI(api_key=api_key)
     response_ai = openai_client.chat.completions.create(
         model="gpt-4o-mini",
