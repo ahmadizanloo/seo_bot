@@ -54,7 +54,7 @@ def draw_wrapped_text(c, text, max_width, x, y, font="Helvetica", font_size=14, 
     for i, line in enumerate(wrapped_text):
         c.drawCentredString(x, y - (i * line_spacing), line)
 
-def create_seo_report_cover(pdf_buffer, logo_path, report_title, website_url):
+def create_seo_report_cover(pdf_buffer, report_title, website_url):
     c = canvas.Canvas(pdf_buffer, pagesize=A4)
     width, height = A4
     margin = 50
@@ -248,7 +248,7 @@ def create_seo_report_cover(pdf_buffer, logo_path, report_title, website_url):
 st.set_page_config(page_title="SEO-Analyse-Tool", layout="wide")
 
 st.title("SEO-Analyse-Tool")
-
+st.image("adojo.jpg", use_column_width=True)
 # URL input
 url = st.text_input("Geben Sie die Website-URL zur Analyse ein (z. B. https://example.com):")
 
@@ -328,7 +328,7 @@ if url and validators.url(url):
 
     # Generate PDF report
     pdf_buffer = io.BytesIO()
-    create_seo_report_cover(pdf_buffer, "adojo.jpg", "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
+    create_seo_report_cover(pdf_buffer, "Umfassende SEO-Analyse und Performance-Insights für bessere Rankings", url)
     pdf_buffer.seek(0)
 
     # Offer PDF download
