@@ -246,9 +246,9 @@ st.title("SEO-Analyse-Tool")
 st.image("adojo.jpg", width=300)
 # URL input
 url = st.text_input("Geben Sie die Website-URL zur Analyse ein (z. B. https://example.com):")
-
+message_placeholder = st.empty()
 if url and validators.url(url):
-    st.info("Die Website wird analysiert. Dies kann einen Moment dauern...")
+    message_placeholder.info("Die Website wird analysiert. Dies kann einen Moment dauern...")
 
     # Fetch and parse website content
     response = requests.get(url)
@@ -321,6 +321,7 @@ if url and validators.url(url):
         file_name="seo_bericht.pdf",
         mime="application/pdf"
     )
+    message_placeholder.empty()
 
 elif url:
     st.error("Ungültige URL. Bitte geben Sie eine korrekte Website-URL ein.")
