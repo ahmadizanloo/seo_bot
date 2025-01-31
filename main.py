@@ -273,9 +273,12 @@ if url and validators.url(url):
                                  for element in elements]) if elements else ""
 
     # Fetch Google PageSpeed Insights data
-    params = {"url": url, "strategy": "mobile", "category": ["performance", "accessibility", "best-practices", "seo"], "key": GOOGLE_API_KEY}
-    response_google = requests.get("https://www.googleapis.com/pagespeedonline/v5/runPagespeed", params=params)
-    scores = {c: round(response_google.json()['lighthouseResult']['categories'][c]['score'] * 100, 1) for c in ['performance', 'accessibility', 'best-practices', 'seo']}
+    if GOOGLE_API_KEY:
+        params = {"url": url, "strategy": "mobile", "category": ["performance", "accessibility", "best-practices", "seo"], "key": GOOGLE_API_KEY}
+        response_google = requests.get("https://www.googleapis.com/pagespeedonline/v5/runPagespeed", params=params)
+        scores = {c: round(response_google.json()['lighthouseResult']['categories'][c]['score'] * 100, 1) for c in ['performance', 'accessibility', 'best-practices', 'seo']}
+    else:
+        raise ValueError("Google API Key is missing. Please provide a valid API key.")
 
     # Plot donut charts
     st.subheader("Google API-Bewertungen")
@@ -309,12 +312,15 @@ if url and validators.url(url):
 
     # Get AI recommendations
     api_key = os.getenv("OPENAI_API_KEY")
-    openai_client = OpenAI(api_key=api_key)
-    response_ai = openai_client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": json.dumps(website_daten, ensure_ascii=False, indent=2)}]
-    )
-    ai_recommendations = response_ai.choices[0].message.content
+    if api_key:
+        openai_client = OpenAI(api_key=api_key)
+        response_ai = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": json.dumps(website_daten, ensure_ascii=False, indent=2)}]
+        )
+        ai_recommendations = response_ai.choices[0].message.content
+    else:
+        raise ValueError("OpenAI API Key is missing. Please provide a valid API key.") 
 
     # Display AI recommendations
     st.subheader("KI-gestützte SEO-Empfehlungen")
