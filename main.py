@@ -273,15 +273,7 @@ if url and validators.url(url):
         scores = {c: round(response_google.json()['lighthouseResult']['categories'][c]['score'] * 100, 1) for c in ['performance', 'accessibility', 'best-practices', 'seo']}
     else:
         raise ValueError("Google API Key is missing. Please provide a valid API key.")
-
-    # Plot donut charts
-    st.subheader("Google API-Bewertungen")
-    cols = st.columns(4)
-    for idx, (category, score) in enumerate(scores.items()):
-        fig, ax = plt.subplots()
-        plot_donut(score, category)
-        cols[idx].pyplot(fig)
-
+    
     # Structure data for AI
     website_daten = {
         "Titel": {
@@ -315,10 +307,6 @@ if url and validators.url(url):
         ai_recommendations = response_ai.choices[0].message.content
     else:
         raise ValueError("OpenAI API Key is missing. Please provide a valid API key.") 
-
-    # Display AI recommendations
-    st.subheader("KI-gestützte SEO-Empfehlungen")
-    st.write(ai_recommendations)
 
     # Generate PDF report
     pdf_buffer = io.BytesIO()
