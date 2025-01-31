@@ -13,6 +13,9 @@ from textwrap import wrap
 import io
 import base64
 import os
+#run streamlit
+st.title("SEO-Analyse-Tool")
+st.image("adojo.jpg", width=300)
 
 # Import all the functions from your original script
 
@@ -242,10 +245,9 @@ def create_seo_report_cover(pdf_buffer, report_title, website_url):
 
 st.set_page_config(page_title="SEO-Analyse-Tool", layout="wide")
 
-st.title("SEO-Analyse-Tool")
-pic=st.image("adojo.jpg", width=300)
-st.session_state.pic=pic
-st.write (st.session_state)
+#streamlit title and image
+
+
 # URL input
 url = st.text_input("Geben Sie die Website-URL zur Analyse ein (z. B. https://example.com):")
 message_placeholder = st.empty()
